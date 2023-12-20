@@ -20,3 +20,4 @@ Module 15 Challenge to build a new set of tools that will allow USGS to visualiz
 2. [Leaflet-Part-1/js - logic1.js](https://github.com/rabellan/leaflet-challenge/tree/main/Leaflet-Part-1/js) - Javascript file of the minimum requirement of the challange
 3. [Leaflet-Part-2/js - logic2.js](https://github.com/rabellan/leaflet-challenge/tree/main/Leaflet-Part-2/js) - Javascript file of bonus with the multiple overlays
 4. [css](https://github.com/rabellan/leaflet-challenge/tree/main/css) - Cascading style sheet for the application
+5. [index.html](https://github.com/rabellan/leaflet-challenge/blob/main/index.html) - main page of the application
