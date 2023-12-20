@@ -14,3 +14,9 @@ Module 15 Challenge to build a new set of tools that will allow USGS to visualiz
 2. Add other base maps to choose from.
 3. Put each dataset into separate overlays that can be turned on and off independently.
 4. Add layer controls to your map.
+
+## Resource Locations
+1. [Images](https://github.com/rabellan/leaflet-challenge/tree/main/Images) - stock images from the starter zip files
+2. [Leaflet-Part-1/js - logic1.js](https://github.com/rabellan/leaflet-challenge/tree/main/Leaflet-Part-1/js) - Javascript file of the minimum requirement of the challange
+3. [Leaflet-Part-2/js - logic2.js](https://github.com/rabellan/leaflet-challenge/tree/main/Leaflet-Part-2/js) - Javascript file of bonus with the multiple overlays
+4. [css](https://github.com/rabellan/leaflet-challenge/tree/main/css) - Cascading style sheet for the application
