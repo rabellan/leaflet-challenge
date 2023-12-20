@@ -1,4 +1,5 @@
 // Create the Earthquake Visualization
+// This is only GRAYSCALE
 
 // Get USGS GeoJSON dataset for earthquakes in the past 7 days
 var queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
@@ -17,13 +18,31 @@ function markerSize(magnitude) {
 };
 
 // Function to determine marker color by depth
-function chooseColor(depth){
-  if (depth < 10) return "#00FF00";
-  else if (depth < 30) return "greenyellow";
-  else if (depth < 50) return "yellow";
-  else if (depth < 70) return "orange";
-  else if (depth < 90) return "orangered";
-  else return "#FF0000";
+function legendColor(depth){
+
+  let color;
+
+  switch (true) {
+    case depth < 10:
+      color = "#00FF00";
+      break;
+    case depth < 30:
+      color = "greenyellow";
+      break;
+    case depth < 50:
+      color = "yellow";
+      break;
+    case depth < 70:
+      color = "orange";
+      break;
+    case depth < 90:
+      color = "orangered";
+      break;
+    default:
+      color = "#FF0000";
+  }
+
+  return color;
 }
 
 function createFeatures(earthquakeData) {
@@ -44,8 +63,9 @@ function createFeatures(earthquakeData) {
 
       // Determine the style of markers based on properties
       var markers = {
-        radius: markerSize(feature.properties.mag),
-        fillColor: chooseColor(feature.geometry.coordinates[2]),
+        //radius: markerSize(feature.properties.mag),
+        radius: feature.properties.mag * 20000,
+        fillColor: legendColor(feature.geometry.coordinates[2]),
         fillOpacity: 0.7,
         color: "black",
         stroke: true,
@@ -61,7 +81,7 @@ function createFeatures(earthquakeData) {
 
 function createMap(earthquakes) {
 
-  // Create tile layer
+  // Create tile layer - GRAYSCALE
   // Get API key from mapbox.com
   var grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token={access_token}', {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> ",
@@ -75,23 +95,20 @@ function createMap(earthquakes) {
   // Create our map, giving it the grayscale map and earthquakes layers to display on load.
   var myMap = L.map("map", {
     center: [
-      37.09, -95.71
+      37.820217, -97.806737 // Middle of Kansas
+      // 37.09, -95.71
     ],
-    zoom: 10,
+    zoom: 4.5,
     layers: [grayscale, earthquakes]
   });
 
-  // Add legend
+  // Add legend div
   var legend = L.control({position: "bottomright"});
   legend.onAdd = function() {
-    var div = L.DomUtil.create("div", "info legend"),
-    depth = [-10, 10, 30, 50, 70, 90];
-
+    var div = L.DomUtil.create("div", "info legend"), depth = [-10, 10, 30, 50, 70, 90];
     div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
-
     for (var i = 0; i < depth.length; i++) {
-      div.innerHTML +=
-      '<i style="background:' + chooseColor(depth[i] + 1) + '"></i> ' + depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
+      div.innerHTML += '<i style="background:' + legendColor(depth[i] + 1) + '"></i> ' + depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
     }
     return div;
   };

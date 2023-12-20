@@ -123,25 +123,24 @@ function createMap(earthquakes) {
         "Tectonic Plates": tectonicPlates
     };
     
-    // Create our map, giving it the satellite map and earthquakes layers to display on load.
+    // Create our map with all three layers: satellite, earthquakes, tectonicPlates
   var myMap = L.map("map", {
     center: [
-      37.09, -95.71
+      37.820217, -97.806737 // Middle of Kansas
+      //37.09, -95.71
     ],
     zoom: 4.5,
     layers: [satellite, earthquakes, tectonicPlates]
   });
 
-  // Add legend
+  // Add legend div
   var legend = L.control({position: "bottomright"});
   legend.onAdd = function() {
 
-    var div = L.DomUtil.create("div", "info legend"),
-    depth = [-10, 10, 30, 50, 70, 90];
+    var div = L.DomUtil.create("div", "info legend"), depth = [-10, 10, 30, 50, 70, 90];
     div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
     for (var i = 0; i < depth.length; i++) {
-      div.innerHTML +=
-      '<i style="background:' + legendColor(depth[i] + 1) + '"></i> ' + depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
+      div.innerHTML += '<i style="background:' + legendColor(depth[i] + 1) + '"></i> ' + depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
     }
     return div;
   };
