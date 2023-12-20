@@ -4,8 +4,8 @@ __pycache__/
 *$py.class
 
 # Leaflet part files to exclude
-Leaflet-Part1/js/logic1_old.js
-Leaflet-Part2/js/logic2_old.js
+**/Leaflet-Part1/js/logic1_old.js
+**/Leaflet-Part2/js/logic2_old.js
 
 # MacOS
 **./.DS_Store
